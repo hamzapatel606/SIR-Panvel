@@ -1,0 +1,42 @@
+{
+  "name": "panvel-sir-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-10",
+
+  "observability": {
+    "enabled": true
+  },
+
+  "vars": {
+    "CF_ACCOUNT_ID": "d2cdff46dfb1c53ee31a738cf6507a70"
+  },
+
+  "d1_databases": [
+    {
+      "binding": "ASDD_DB",
+      "database_name": "panvel-sir-asdd",
+      "database_id": "82b03d14-9166-4324-a92e-cb7b7aa55884",
+      "remote": true
+    },
+    {
+      "binding": "DRAFT_DB",
+      "database_name": "panvel-sir-draft",
+      "database_id": "cd4ee910-17f4-4ad8-8d09-1a0428eb6758",
+      "remote": true
+    },
+    {
+      "binding": "DISCREPANCY_DB",
+      "database_name": "panvel-sir-discrepancy",
+      "database_id": "41adbaa0-4fca-4907-b2ac-7edad44fe546",
+      "remote": true
+    }
+  ],
+
+  "r2_buckets": [
+    {
+      "binding": "PDF_BUCKET",
+      "bucket_name": "panvel-sir-pdfs",
+      "remote": true
+    }
+  ]
+}

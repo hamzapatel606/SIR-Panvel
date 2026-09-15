@@ -1,0 +1,15 @@
+-- SIR Panvel API
+-- Migration 0008: PDF page count compatibility
+--
+-- The original pdf_documents table is referenced by draft_records,
+-- asdd_records, and discrepancy_records with ON DELETE RESTRICT.
+-- Cloudflare D1 does not safely permit rebuilding this referenced
+-- parent table in-place during a remote migration.
+--
+-- Keep the existing schema and represent an unknown page count as 0.
+-- Application/API code translates 0 <-> null, so callers still see
+-- pageCount: null when the page count is unknown.
+--
+-- This migration is intentionally a no-op. It records the compatibility
+-- decision without risking existing foreign-key references or PDF metadata.
+SELECT 1;
