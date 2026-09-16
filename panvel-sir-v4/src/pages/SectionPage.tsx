@@ -425,7 +425,22 @@ export default function SectionPage({
 				</button>
 			</div>
 
-			{error && <div className="error-message">{error}</div>}
+			{error && (
+				<div className="error-message">
+					<svg
+						viewBox="0 0 24 24"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						aria-hidden="true"
+						style={{ width: 16, height: 16, flex: "0 0 auto", marginTop: 2 }}
+					>
+						<circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
+						<path d="M12 8v5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+						<circle cx="12" cy="16" r="0.9" fill="currentColor" stroke="none" />
+					</svg>
+					<span>{error}</span>
+				</div>
+			)}
 
 			<div className="results-toolbar">
 				<div>
@@ -438,10 +453,27 @@ export default function SectionPage({
 				</div>
 			</div>
 
-			{loading && <div className="loading-state">Loading records…</div>}
+			{loading && (
+				<div className="skeleton-grid" aria-hidden="true">
+					{Array.from({ length: 6 }).map((_, index) => (
+						<div className="skeleton-card" key={index}>
+							<div className="skeleton-line skeleton-line-title" />
+							<div className="skeleton-line" />
+							<div className="skeleton-line" />
+							<div className="skeleton-line skeleton-line-sm" />
+						</div>
+					))}
+				</div>
+			)}
 
 			{!loading && records.length === 0 && !error && (
 				<div className="empty-state">
+					<div className="empty-icon">
+						<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" strokeWidth="1.8" />
+							<path d="m19.5 19.5-4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+						</svg>
+					</div>
 					<strong>No records found</strong>
 					<span>Try another search or select a different Part.</span>
 				</div>
