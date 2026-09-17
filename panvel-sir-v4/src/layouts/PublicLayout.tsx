@@ -1,6 +1,14 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 function PublicLayout() {
+	const [navOpen, setNavOpen] = useState(false);
+	const location = useLocation();
+
+	useEffect(() => {
+		setNavOpen(false);
+	}, [location.pathname]);
+
 	return (
 		<div className="app-shell">
 			<header className="topbar">
@@ -20,10 +28,28 @@ function PublicLayout() {
 						<div className="brand-title">SIR Panvel</div>
 						<div className="brand-subtitle">Special Intensive Revision</div>
 					</div>
+
+					<button
+						type="button"
+						className="nav-toggle"
+						aria-label={navOpen ? "Close menu" : "Open menu"}
+						aria-expanded={navOpen}
+						onClick={() => setNavOpen((current) => !current)}
+					>
+						{navOpen ? (
+							<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+								<path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+							</svg>
+						) : (
+							<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+								<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+							</svg>
+						)}
+					</button>
 				</div>
 			</header>
 
-			<nav className="navigation">
+			<nav className={`navigation${navOpen ? " navigation-open" : ""}`}>
 				<NavLink to="/" end>
 					<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 						<path
@@ -84,7 +110,7 @@ function PublicLayout() {
 			</main>
 
 			<footer className="footer">
-				<span>SIR Panvel</span>
+				<span>NOTE : This is a unofficial lookup tool for the SIR Panvel · Special Intensive Revision 2026 · Panvel Assembly Constituency 188</span>
 			</footer>
 		</div>
 	);

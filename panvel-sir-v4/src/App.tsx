@@ -1,16 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
 import SectionPage from "./pages/SectionPage";
+import HomePage from "./pages/HomePage";
 import AdminPage from "./pages/AdminPage";
-
-function HomePage() {
-	return (
-		<div className="page-header">
-			<h1>Welcome to SIR Panvel</h1>
-			<p>Special Intensive Revision</p>
-		</div>
-	);
-}
 
 function App() {
 	return (
@@ -25,8 +17,8 @@ function App() {
 						element={
 							<SectionPage
 								section="asdd"
-								title="ASDD"
-								description="Absent, Shifted, Dead & Duplicate voters"
+								title="ASDD List"
+								description="Access and search voter information from the Accepted, Shifted, Deleted and Duplicated (ASDD) list for Panvel Assembly Constituency 188."
 							/>
 						}
 					/>
@@ -37,7 +29,7 @@ function App() {
 							<SectionPage
 								section="draft"
 								title="Draft List"
-								description="Search and browse the Draft Electoral Roll"
+								description="Access and search voter information from the Draft List for Panvel Assembly Constituency 188."
 							/>
 						}
 					/>
@@ -48,7 +40,7 @@ function App() {
 							<SectionPage
 								section="discrepancy"
 								title="Discrepancy List"
-								description="Review electoral roll discrepancies"
+								description="View and search voter records with discrepancies identified during the SIR process for Panvel Assembly Constituency 188."
 							/>
 						}
 					/>
@@ -57,10 +49,7 @@ function App() {
 				{/* Private — never linked from public UI */}
 				<Route path="/admin" element={<AdminPage />} />
 
-				<Route
-					path="*"
-					element={<Navigate to="/" replace />}
-				/>
+				<Route path="*" element={<Navigate to="/" replace />} />
 			</Routes>
 		</BrowserRouter>
 	);
